@@ -31,7 +31,7 @@ pipeline {
 
         stage('Test') {
             steps {
-                sh 'dotnet test HouseRentingSystem.UnitTests/HouseRentingSystem.UnitTests.csproj --no-build --verbosity normal'
+                sh 'dotnet test --no-build --verbosity normal'
             }
         }
     }
