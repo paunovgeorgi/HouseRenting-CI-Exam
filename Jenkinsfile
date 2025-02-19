@@ -1,19 +1,20 @@
 pipeline {
-    agent { label 'linux' }  // Runs on an Ubuntu agent
+    agent any  // Runs on an Ubuntu agent
+
+    tools {
+        dotnetsdk 'dotnet6'  // Use the name you configured in Jenkins
+    }
 
     stages {
-        stage('Checkout Repository') {
+        stage('Install Dependencies') {
             steps {
-                checkout scm
+                sh 'sudo apt-get update && sudo apt-get install -y libicu-dev'
             }
         }
 
-        stage('Setup .NET') {
+        stage('Checkout Repository') {
             steps {
-                sh 'wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh'
-                sh 'chmod +x dotnet-install.sh'
-                sh './dotnet-install.sh --version 6.0.0'
-                sh 'export PATH=$HOME/.dotnet:$PATH'
+                checkout scm
             }
         }
 
