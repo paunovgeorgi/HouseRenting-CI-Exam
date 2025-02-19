@@ -1,16 +1,14 @@
 pipeline {
     agent any  // Runs on an Ubuntu agent
 
+     tools {
+        dotnetsdk 'dotnet6'  // Use the name you configured in Jenkins
+    }
+
     stages {
         stage('Checkout Repository') {
             steps {
                 checkout scm
-            }
-        }
-
-       stage('Setup .NET') {
-            steps {
-                dotnetSdkInstall(version: '6.0.100')
             }
         }
 
