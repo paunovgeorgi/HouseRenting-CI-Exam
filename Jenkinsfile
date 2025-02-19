@@ -1,11 +1,17 @@
 pipeline {
     agent any  // Runs on an Ubuntu agent
 
-     tools {
+    tools {
         dotnetsdk 'dotnet6'  // Use the name you configured in Jenkins
     }
 
     stages {
+        stage('Install Dependencies') {
+            steps {
+                sh 'sudo apt-get update && sudo apt-get install -y libicu-dev'
+            }
+        }
+
         stage('Checkout Repository') {
             steps {
                 checkout scm
