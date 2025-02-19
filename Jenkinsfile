@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'linux' }  // Runs on an Ubuntu agent
+    agent any  // Runs on an Ubuntu agent
 
     stages {
         stage('Checkout Repository') {
@@ -31,7 +31,7 @@ pipeline {
 
         stage('Test') {
             steps {
-                sh 'dotnet test HouseRentingSystem.UnitTests/HouseRentingSystem.UnitTests.csproj --no-build --verbosity normal'
+                sh 'dotnet test --no-build --verbosity normal'
             }
         }
     }
